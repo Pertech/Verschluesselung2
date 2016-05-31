@@ -92,16 +92,18 @@ public class GetVerschluesselterText {
             index = Integer.valueOf(test1);
             secNum += String.valueOf(zl.get(index));
 		}
+        verschluesselterText = spezialVerschluesselung(verschluesselterText, secretNum);
         secretNum = secNum;
-        verschluesselterText = spezialVerschluesselung(verschluesselterText);
         String keyList = key[0] + "\n" + key[1] + "\n" + key[2] + "\n" + key[3] + "\n" + key[4] + "\n" + key[5] + "\n" + key[6] + "\n" + key[7] + "\n" + key[8] + "\n" + key[9] + "\n";
         return verschluesselterText + "\n" + "\n" + "Verwendeter Key: \n" + keyList + "\n" + "Verwendete Geheimnummer: " + secretNum;
     }
     
-    private String spezialVerschluesselung(String text){
+    private String spezialVerschluesselung(String text, String geheimN){
     	boolean add = false;
     	int addToI = 0;
     	int tl = 0;
+    	int sn1 = 1;//Integer.valueOf(geheimN.substring(0, 1));
+    	int sn2 = Integer.valueOf(geheimN.substring(geheimN.length() - 1, geheimN.length()));
     	if(text.length() % 2 != 0){
     		add = true;
     		tl = (text.length() + 1) / 2;
@@ -116,12 +118,12 @@ public class GetVerschluesselterText {
     		int i1 = 0;
 			int i2 = 0;
 			if(add && i == 0){
-				i1 = text.codePointAt(i) * 3 + 1;
-				i2 = text.codePointAt(i) + 1 * 3;
+				i1 = text.codePointAt(i) * sn1 + sn2;
+				i2 = text.codePointAt(i) + 1 * sn2;
 				unicodeCodeP[i] = i1;
 			} else{
-				i1 = text.codePointAt(i) * 3 + text.codePointAt(text.length() - i - 1 + addToI);
-				i2 = text.codePointAt(i) + text.codePointAt(text.length() - i - 1 + addToI) * 3;
+				i1 = text.codePointAt(i) * sn1 + text.codePointAt(text.length() - i - 1 + addToI) * sn2;
+				i2 = text.codePointAt(i) * sn2 + text.codePointAt(text.length() - i - 1 + addToI) * sn1;
 				unicodeCodeP[i] = i1;
 				unicodeCodeP[text.length() - i - 1 + addToI] = i2;
 			}

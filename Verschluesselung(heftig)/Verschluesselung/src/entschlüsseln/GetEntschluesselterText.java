@@ -44,7 +44,7 @@ public class GetEntschluesselterText {
             pos = Integer.valueOf(test);
         	newKey[i] = key[pos];
         }
-        entschluesselterText = spezialEntschluesselung(entschluesselterText);
+        entschluesselterText = spezialEntschluesselung(entschluesselterText, secretNum);
         entschluesselterText = entschluesselnWithKey(entschluesselterText, newKey);
 
         int textlength = entschluesselterText.length();
@@ -83,10 +83,12 @@ public class GetEntschluesselterText {
         return new String(entschText);
     }
 
-    private String spezialEntschluesselung(String text){
+    private String spezialEntschluesselung(String text, String geheimN){
     	boolean add = false;
     	int addToI = 0;
     	int tl = 0;
+    	int sn1 = 1;//Integer.valueOf(geheimN.substring(0, 1));
+    	int sn2 = Integer.valueOf(geheimN.substring(geheimN.length() - 1, geheimN.length()));
     	if(text.length() % 2 != 0){
     		add = true;
     		tl = (text.length() + 1) / 2;
@@ -98,17 +100,35 @@ public class GetEntschluesselterText {
     	int[] unicodeCodeP = new int[text.length()];
     	String entText = "";
     	for (int i = 0; i < tl; i++) {
-			int i1 = text.codePointAt(i);
+			int i1 = 0;
 			int i2 = 0;
 			if(add && i == 0){
-				int x = (text.codePointAt(i) - 1) / 3;
-				//int y = (i2 - i1) / 8;
-				//int x = i2 / 3 - 3 * y;
+				i1 = text.codePointAt(i);
+				int x = (text.codePointAt(i) - sn2) / sn1;
 				unicodeCodeP[i] = x;
 			} else{
-				i2 = text.codePointAt(text.length() - i - 1 + addToI) * 3;
-				int y = (i2 - i1) / 8;
-				int x = i2 / 3 - 3 * y;
+				i1 = text.codePointAt(i) * sn2;
+				i2 = text.codePointAt(text.length() - i - 1 + addToI) * sn1;
+				int y = 0;
+				int x = 0;
+				if (sn1 > sn2){
+					y = (i2 - i1) / ((sn1 * sn1) - (sn2 * sn2));
+					if(i2 > i1){
+						x = i2 / sn1 - sn1 * y;
+					}
+					else{
+						x = i2 / sn1 - sn1 * y;
+					}
+				}
+				else{
+					y = (i1 - i2) / ((sn2 * sn2) - (sn1 * sn1));
+					if(i2 > i1){
+						x = i2 / sn1 - sn1 * y;
+					}
+					else{
+						x = i1 / sn2 - sn2 * y;
+					}
+				}
 				unicodeCodeP[i] = x;
 				unicodeCodeP[text.length() - i - 1 + addToI] = y;
 			}
