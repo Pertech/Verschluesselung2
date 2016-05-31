@@ -123,7 +123,7 @@ public class GetEntschluesselterText {
 				else{
 					y = (i1 - i2) / ((sn2 * sn2) - (sn1 * sn1));
 					if(i2 > i1){
-						x = i2 / sn1 - sn1 * y;
+						x = i1 / sn2 - sn2 * y;
 					}
 					else{
 						x = i1 / sn2 - sn2 * y;

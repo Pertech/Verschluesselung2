@@ -119,7 +119,7 @@ public class GetVerschluesselterText {
 			int i2 = 0;
 			if(add && i == 0){
 				i1 = text.codePointAt(i) * sn1 + sn2;
-				i2 = text.codePointAt(i) + 1 * sn2;
+				//i2 = text.codePointAt(i) + 1 * sn2;
 				unicodeCodeP[i] = i1;
 			} else{
 				i1 = text.codePointAt(i) * sn1 + text.codePointAt(text.length() - i - 1 + addToI) * sn2;
