@@ -103,7 +103,11 @@ public class GetVerschluesselterText {
     	int addToI = 0;
     	int tl = 0;
     	int sn1 = 1;//Integer.valueOf(geheimN.substring(0, 1));
-    	int sn2 = Integer.valueOf(geheimN.substring(geheimN.length() - 1, geheimN.length()));
+    	int sn2 = 0;
+    	for (int i = 0; i < geheimN.length(); i++) {
+    		sn2 += Integer.valueOf(geheimN.substring(i, i+1));
+    		i += 2;
+		}
     	if(text.length() % 2 != 0){
     		add = true;
     		tl = (text.length() + 1) / 2;
