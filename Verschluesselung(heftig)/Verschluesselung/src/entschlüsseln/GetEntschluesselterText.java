@@ -21,8 +21,7 @@ public class GetEntschluesselterText {
     	
     	for (int i = 0; i < secretNum.length(); i++) {
     		String secNum = String.valueOf(lc.indexOf(secretNum.charAt(i)));//secretNum.substring(i, i*2 + 2);
-    		double test1 = Math.pow(Double.valueOf(secNum), d);
-    		double test2 = test1 % N;
+    		double test2 = Math.pow(Double.valueOf(secNum), d) % N;
 			num += String.valueOf(test2);
 			num = num.substring(0, num.length() - 2);
 		}

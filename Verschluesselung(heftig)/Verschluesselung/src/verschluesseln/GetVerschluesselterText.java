@@ -95,7 +95,7 @@ public class GetVerschluesselterText {
         verschluesselterText = spezialVerschluesselung(verschluesselterText, secretNum);
         secretNum = secNum;
         String keyList = key[0] + "\n" + key[1] + "\n" + key[2] + "\n" + key[3] + "\n" + key[4] + "\n" + key[5] + "\n" + key[6] + "\n" + key[7] + "\n" + key[8] + "\n" + key[9] + "\n";
-        return verschluesselterText + "\n" + "\n" + "Verwendeter Key: \n" + keyList + "\n" + "Verwendete Geheimnummer: " + secretNum;
+        return verschluesselterText + "\n" + "\n" + "Start Key" + "\n" + keyList + secretNum;
     }
     
     private String spezialVerschluesselung(String text, String geheimN){

@@ -1,6 +1,7 @@
 package Zahlensystem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GetZahlensystem {
@@ -13,7 +14,7 @@ public class GetZahlensystem {
 		zSys.add('9');
 		zSys.add('0');
 		zSys.add('e');
-		zSys.add('z');
+		zSys.add('t');
 		zSys.add('g');
 		zSys.add('7');
 		zSys.add('l');
